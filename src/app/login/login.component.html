@@ -13,8 +13,8 @@
     <input type="Password"  formControlName="password" placeholder="Enter Password" [ngClass]="{'form-control':true,'from-control-danger':AddNasForm.controls.password.invalid&&submit}"/>
     <small *ngIf="AddNasForm.hasError('required','password')&&submit" class="form-text error">Password is Required</small>
   </div>
-    <button id="log" type="submit" class="btn btn-md btn-success">Log In</button>&nbsp;
-    <button class="btn btn-md btn-primary" (click)="signup()">Signup</button>
+    <button id="log" type="submit"  class="btn btn-md btn-success">Log In</button>&nbsp;
+    <span style="cursor: pointer;" (click)="signup()"><b>Sign UP</b></span>
 </form>
 
 

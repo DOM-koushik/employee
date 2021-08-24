@@ -67,7 +67,6 @@ export class SignupComponent implements OnInit {
 
             console.log('DATA INSERTED SUCCESSFULLY');
             window.alert('Data Inserted Successfully')
-            this.closeModal();
             this.router.navigate(['/auth/login'])
           },
           (error) => {

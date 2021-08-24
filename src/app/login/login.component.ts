@@ -45,7 +45,6 @@ export class LoginComponent implements OnInit {
     });
   };
 
-
   getData() {
     console.log(this.value)
     this.createTable().then(res => {
