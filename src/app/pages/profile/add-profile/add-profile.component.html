@@ -1,0 +1,42 @@
+<div class="col-md-12">
+  <nb-card>
+    <nb-card-header>{{id ? 'Edit':'Add'}} Profile</nb-card-header>
+    <nb-card-body>
+      <toaster-container [toasterconfig]></toaster-container>
+      <form [formGroup]="AddNasForm" class="form-horizontal" (ngSubmit)="addNas();">
+        <nb-tabset>
+          <nb-tab tabTitle="Profile Details">
+            <div class="modal-body">
+              <div class="form-group row">
+                <div class="col-sm-6">
+                  <label>Profile Name</label>
+                  <input type="text" name="pro_name" formControlName="pro_name" placeholder="Profile Name"
+                    [ngClass]="{'form-control' : true,'form-control-danger':AddNasForm.controls.pro_name.invalid&&submit}"
+                   />
+                  <small *ngIf="AddNasForm.controls.pro_name.invalid&&submit" class="form-text error">Business Name is
+                    required! </small>
+                </div>
+                <div class="col-sm-6">
+                  <label>Description</label>
+                  <textarea name="descp" formControlName="descp" placeholder="Profile Description"
+                    [ngClass]="{'form-control' : true,'form-control-danger':AddNasForm.controls.descp.invalid&&submit}"></textarea>
+                  <small *ngIf="AddNasForm.hasError('required','descp')&&submit" class="form-text error">Business
+                    Location is required! </small>
+                </div>
+              </div>
+            </div>
+          </nb-tab>
+          <nb-tab tabTitle="Profile Role">
+            <div class="modal-body">
+              <tree-root #tree [nodes]="nodes" [options]="options"></tree-root>
+            </div>
+          </nb-tab>
+        </nb-tabset>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-md btn-success">{{id ? 'Update': 'Create'}}</button>
+          <button class="btn btn-md btn-danger" [routerLink]="['/pages/profile/list-profile']">Back</button>
+        </div>
+</form>
+</nb-card-body>
+</nb-card>
+</div>

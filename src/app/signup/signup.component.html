@@ -1,0 +1,35 @@
+<div class="modal-header" style="background-color :  #00d2e5;">
+   <label>Signup</label>
+   <button class="close" aria-label="Close" (click)="activeModal.close();">
+      <span aria-hidden="true">&times;</span>
+   </button>
+</div>
+<form [formGroup]="AddNasForm" (ngSubmit)="addEmp()">
+   <div class="modal-body">
+      <div class="form-group row">
+         <div class="col-sm-3">
+            <label>Employe Name</label>
+            <input type="text" formControlName="emp_name" placeholder="UserName"
+               [ngClass]="{'form-control' : true,'form-control-danger':AddNasForm.controls.emp_name.invalid&&submit}" />
+         </div>
+         <div class="col-sm-3">
+            <label>Mobile Number</label>
+            <input type="text" formControlName="mob_num" placeholder="Mobile Number"
+               [ngClass]="{'form-control' : true,'form-control-danger':AddNasForm.controls.mob_num.invalid&&submit}" />
+         </div>
+         <div class="col-sm-3">
+            <label>Username</label>
+            <input type="text" formControlName="username" placeholder="UserName"
+               [ngClass]="{'form-control' : true,'form-control-danger':AddNasForm.controls.username.invalid&&submit}" />
+         </div>
+         <div class="col-sm-3">
+            <label>Password</label>
+            <input type="password" formControlName="password" placeholder="Password"
+               [ngClass]="{'form-control' : true,'form-control-danger':AddNasForm.controls.password.invalid&&submit}" />
+         </div>
+      </div>
+   </div>
+   <div class="modal-footer">
+      <button type="submit" class="btn btn-md btn-success">Signup</button>
+   </div>
+</form>

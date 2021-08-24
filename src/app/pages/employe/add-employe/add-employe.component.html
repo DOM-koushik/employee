@@ -1,0 +1,38 @@
+<div class="col-md-12">
+  <nb-card>
+    <nb-card-header>{{id ? 'Edit':'Add'}} Employe</nb-card-header>
+    <nb-card-body>
+      <toaster-container [toasterconfig]></toaster-container>
+        <form [formGroup]="AddNasForm" class="form-horizontal" (ngSubmit)="saveData();">  
+          <div class="modal-body">
+            <div class="form-group row">
+              <div class="col-sm-3">
+                <label>Employe Name</label>
+                <input type="text" formControlName="emp_name" placeholder="UserName"
+                   [ngClass]="{'form-control' : true,'form-control-danger':AddNasForm.controls.emp_name.invalid&&submit}" />
+             </div>
+             <div class="col-sm-3">
+                <label>Mobile Number</label>
+                <input type="text" formControlName="mob_num" placeholder="Mobile Number"
+                   [ngClass]="{'form-control' : true,'form-control-danger':AddNasForm.controls.mob_num.invalid&&submit}" />
+             </div>
+             <div class="col-sm-3">
+                <label>Username</label>
+                <input type="text" formControlName="username" placeholder="UserName"
+                   [ngClass]="{'form-control' : true,'form-control-danger':AddNasForm.controls.username.invalid&&submit}" />
+             </div>
+             <div class="col-sm-3" [hidden]="id">
+                <label>Password</label>
+                <input type="password" formControlName="password" placeholder="Password"
+                   [ngClass]="{'form-control' : true,'form-control-danger':AddNasForm.controls.password.invalid&&submit}" />
+             </div>
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-md btn-success">{{id ? 'Update': 'Create'}}</button>
+              <button class="btn btn-md btn-danger" [routerLink]="['/pages/employe/list-employe']">Back</button>
+            </div>
+          </div>
+        </form>
+    </nb-card-body>
+  </nb-card>
+</div>

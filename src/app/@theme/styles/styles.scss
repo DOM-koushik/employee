@@ -1,0 +1,136 @@
+// themes - our custom or/and out of the box themes
+@import 'themes';
+// date-time picker
+@import "~ng-pick-datetime/assets/style/picker.min.css";
+// framework component themes (styles tied to theme variables)
+@import '~@nebular/theme/styles/globals';
+@import '~@nebular/auth/styles/all';
+@import '~@nebular/bootstrap/styles/globals';
+// ...
+
+// global app font size
+@import './font-size';
+
+// loading progress bar theme
+@import './pace.theme';
+
+// install the framework and custom global styles
+@include nb-install() {
+
+  // framework global styles
+  @include nb-theme-global();
+  @include nb-auth-global();
+  @include nb-bootstrap-global();
+
+  // loading progress bar
+  @include ngx-pace-theme();
+};
+.dropdown, .dropup {
+    position: relative;
+    margin-left: 10px;
+}
+
+body {
+    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    text-transform: uppercase;
+}
+
+
+.ngb-tabs > ul.li.active > a,
+.ngb-tabs > ul.li.active > a:hover,
+.ngb-tabs > ul.li.active > a:focus {
+  color: #555555;
+  cursor: default;
+  background-color: #ffffff;
+  border: 1px solid #dddddd;
+  border-bottom-color: transparent;
+} 
+
+.nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
+    color: inherit;
+    background-color: inherit;
+    border-color: #dee2e6 #dee2e6 #fff;
+}
+     
+.ng-dropdown-panel .ng-dropdown-panel-items .ng-option {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    cursor: pointer;
+    display: block;
+    white-space: nowrap;
+    padding-top: 10px;
+    padding-left:5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+auto-complete{
+  width:100% !important;
+}
+
+.ng-dropdown-panel {
+    left:-2px;
+    width: 101% !important;
+    top: 43px;
+    border:2px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border:inherit;
+    background-color: inherit;
+}
+.ng-dropdown-panel :hover .cls {
+   color: blue ;
+
+}
+.ng-select .ng-select-container {
+    color: inherit !important;
+}
+.fa{
+  font-size: 20px !important;
+}
+.pagination a {
+    color: inherit;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    border: 1px solid #ddd;
+    cursor: pointer;
+}
+
+a {
+  cursor: pointer;
+}
+
+.green {
+  color: green;
+  cursor: pointer;
+}
+
+.right {
+  float: right;
+  text-align:right;
+}
+
+.pagination a.active {
+    background-color:  #ddd;
+    color: black;
+    border: 1px solid  #ddd;
+    cursor: no-drop;
+}
+
+.pagination a.disabled {
+    cursor: no-drop;
+}
+
+.pagination a:first-child {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.pagination a:last-child {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+  }
+
