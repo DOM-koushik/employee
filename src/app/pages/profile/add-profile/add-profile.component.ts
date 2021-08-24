@@ -13,15 +13,15 @@ import { toJS } from "mobx";
 })
 
 export class AddProfileComponent implements OnInit {
-  @ViewChild('tree') public tree;
+  @ViewChild('tree') public tree; db: any;
   submit: boolean = false; AddNasForm; id;
   nodes = [
     {
       name: 'Employee',
       children: [
-        { id: 100, name: 'List Employe'},
+        { id: 100, name: 'List Employe' },
         { id: 101, name: 'Add Employe' },
-        { id: 102, name: 'Edit Employe'},
+        { id: 102, name: 'Edit Employe' },
       ]
     },
   ];
@@ -33,7 +33,16 @@ export class AddProfileComponent implements OnInit {
     private alert: ToasterService,
 
 
-  ) {  }
+  ) {
+    this.openDB();
+    this.createTable();
+    this.id = JSON.parse(localStorage.getItem('proid'))
+    console.log(this.id)
+  }
+
+  get value() {
+    return this.AddNasForm.value
+  }
 
   selectednodes() {
     const selectedNodes = [];
@@ -60,9 +69,47 @@ export class AddProfileComponent implements OnInit {
     }
   }
 
+  openDB() {
+    this.db = (<any>window).openDatabase("USERDATA", '1.0', "WebSQL Database", 2 * 1024 * 1024);
+  }
+
+  createTable() {
+    return new Promise((resolve, reject) => {
+      this.db.transaction((tx) => {
+        tx.executeSql('CREATE TABLE IF NOT EXISTS PROFILETABLE (PROFILE_NAME,PROFILE_ID,DESCRIPTION,LAST_CHANGE_DATE)', [],
+          (tx, result) => {
+            console.log('PROFILETABLE TABLE CREATED');
+            resolve(result);
+          },
+          (error) => {
+            console.log('PROFILETABLE TABLE NOT CREATED');
+            reject(error)
+          });
+      });
+    });
+  };
 
   addNas() {
-    
+    this.value.role = this.selectednodes()
+    this.createTable().then(res => {
+      console.log('SUCCESS');
+      this.db.transaction((tx) => {
+        tx.executeSql('INSERT INTO PROFILETABLE (PROFILE_NAME,PROFILE_ID,DESCRIPTION,LAST_CHANGE_DATE) VALUES (?,?,?,?)',
+          [this.value.pro_name, this.value.role, this.value.descp, new Date().getDate() + "/" + (new Date().getMonth() + 1) + "/" + new Date().getFullYear()],
+          (tx, result) => {
+
+            console.log('DATA INSERTED SUCCESSFULLY');
+            window.alert('Data Inserted Successfully')
+            this.router.navigate(['/pages/profile/list-profile'])
+          },
+          (error) => {
+            console.log(error);
+            console.log(tx, 'DATA NOT INSERTED');
+          });
+      });
+    }, err => {
+      console.log("FAIL");
+    });
   }
 
   toastalert(msg, status = 0) {
@@ -78,12 +125,11 @@ export class AddProfileComponent implements OnInit {
   }
 
   getedit() {
-   
+
   }
 
   ngOnInit() {
     this.createForm();
-   
   }
 
   createForm() {

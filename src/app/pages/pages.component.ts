@@ -21,6 +21,20 @@ export class PagesComponent {
       link: '/pages/dashboard',
       home: true,
     },
+    {
+      title: 'Permissions',
+      icon: 'fa fa-fingerprint',
+      children:[
+        {
+          title: 'List Profile',
+          link: '/pages/profile/list-profile',
+        },
+        {
+          title:'Add Roles',
+          link: '/pages/profile/add-profile',
+        },
+      ]
+    },
    
     {
       title: 'Employe',
