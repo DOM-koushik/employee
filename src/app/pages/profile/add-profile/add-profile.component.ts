@@ -14,7 +14,7 @@ import { toJS } from "mobx";
 
 export class AddProfileComponent implements OnInit {
   @ViewChild('tree') public tree; db: any;
-  submit: boolean = false; AddNasForm; id;
+  submit: boolean = false; AddNasForm; editdata;
   nodes = [
     {
       name: 'Employee',
@@ -36,13 +36,25 @@ export class AddProfileComponent implements OnInit {
   ) {
     this.openDB();
     this.createTable();
-    this.id = JSON.parse(localStorage.getItem('proid'))
-    console.log(this.id)
+    this.editdata = JSON.parse(localStorage.getItem('prodata'))
+    console.log(this.editdata)
   }
 
   get value() {
     return this.AddNasForm.value
   }
+
+  ngOnInit() {
+    this.createForm();
+    if(this.editdata){
+      this.getprofile();
+    }
+  }
+
+  async getprofile() {
+      // this.selectnodes(this.editdata['PROFILE_ID'])
+  }
+
 
   selectednodes() {
     const selectedNodes = [];
@@ -56,6 +68,7 @@ export class AddProfileComponent implements OnInit {
   }
 
   selectnodes(item) {
+    console.log(item)
     let data = JSON.parse(item);
     let index: number = data.indexOf(404);
     if (index !== -1) {
@@ -126,10 +139,6 @@ export class AddProfileComponent implements OnInit {
 
   getedit() {
 
-  }
-
-  ngOnInit() {
-    this.createForm();
   }
 
   createForm() {
